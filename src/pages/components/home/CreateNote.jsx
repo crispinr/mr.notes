@@ -5,6 +5,15 @@ import SnackBar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import firebase from "firebase/app";
 import "../../firebase";
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles({
+    field: {
+      marginTop: 20,
+      marginBottom: 20,
+      display: 'block'
+    }
+  })
 
 export default function CreateNote() {
 
@@ -19,13 +28,14 @@ export default function CreateNote() {
     }
 
     const [open, setOpen] = useState(false);
-
+    const classes = useStyles();
     const handleClose = () => {
         setOpen(false);
     };
 
     const [state, setState] = useState({
         note: "",
+        title: "",
     });
 
     const handleChange = (e) => {
@@ -40,11 +50,14 @@ export default function CreateNote() {
         e.preventDefault();
         console.log(state.note);
         const note = state.note;
+        console.log(state.title);
+        const title = state.title;
         var db = firebase.firestore();
         if (state.note !== "") {
             db.collection("notes")
                 .add({
                 note: note,
+                title: title,
                 created: firebase.firestore.FieldValue.serverTimestamp(),
             })
             .then((docRef) => {
@@ -53,6 +66,7 @@ export default function CreateNote() {
                 setState((prevState) => ({
                     ...prevState,
                     note: "",
+                    title: "",
                 }));
             })
             .catch((error) => {
@@ -65,7 +79,18 @@ export default function CreateNote() {
         <>
             <div className = "container col-md-8 col-xl-6 mt-4">
                 <form action = "#">
-                    <TextField
+                <TextField
+                    id = "title"
+                    label = "Add a title..."
+                    variant = "outlined"
+                    rows = {4}
+                    className={classes.field}
+                    fullWidth
+                    singleline
+                    onChange = {handleChange}
+                    value = {state.title}
+                />
+                <TextField
                         id = "note"
                         label = "Create a new note..."
                         variant = "filled"

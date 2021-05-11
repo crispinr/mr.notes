@@ -3,13 +3,6 @@ import CreateNote from "./components/home/CreateNote";
 import GetNotes from "./components/home/GetNotes";
 import { motion } from "framer-motion";
 
-import Timeline from '@material-ui/lab/Timeline';
-import TimelineItem from '@material-ui/lab/TimelineItem';
-import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
-import TimelineConnector from '@material-ui/lab/TimelineConnector';
-import TimelineContent from '@material-ui/lab/TimelineContent';
-import TimelineDot from '@material-ui/lab/TimelineDot';
-
 export default function Home() {
     const easing = [0.6, -0.05, 0.01, 0.99];
     const fadeIn1 = {
@@ -49,43 +42,6 @@ export default function Home() {
                     <GetNotes></GetNotes>
                 </motion.div>
             </motion.div>
-            <Timeline>
-                <TimelineItem>
-                    <TimelineSeparator>
-                        <TimelineDot variant = "outlined" color = "primary" />
-                        <TimelineConnector />
-                    </TimelineSeparator>
-                    <TimelineContent>
-                        Eat
-                    </TimelineContent>
-                </TimelineItem>
-                <TimelineItem>
-                    <TimelineSeparator>
-                        <TimelineDot variant = "outlined" color = "secondary" />
-                        <TimelineConnector />
-                    </TimelineSeparator>
-                    <TimelineContent>
-                        Code
-                    </TimelineContent>
-                </TimelineItem>
-                <TimelineItem>
-                    <TimelineSeparator>
-                        <TimelineDot variant = "outlined" color = "primary" />
-                        <TimelineConnector />
-                    </TimelineSeparator>
-                    <TimelineContent>
-                        Sleep
-                    </TimelineContent>
-                </TimelineItem>
-                <TimelineItem>
-                    <TimelineSeparator>
-                        <TimelineDot variant = "outlined" color = "secondary" />
-                    </TimelineSeparator>
-                    <TimelineContent>
-                        Repeat
-                    </TimelineContent>
-                </TimelineItem>
-                </Timeline>
         </Layout>
     );
 }
